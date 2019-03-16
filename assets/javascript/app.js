@@ -1,5 +1,8 @@
 $(document).ready(function () {
-
+  
+// NY TIMES queryURL for API
+ var newsURL = "https://api.nytimes.com/svc/search/v2/articlesearch.json?";
+  
     var getData = function (url) {
         $.ajax({
             url: url,
@@ -18,7 +21,23 @@ $(document).ready(function () {
 
         getData(ticketURL);
         getData(weatherURL);
+      
+       ////// NEWS API ///////
+    var newsParams = { 
+     "api-key": 
+     "R1a31F4tBjCUaM2ho8GtIFsrSdtXt30M" 
+    };
+    
+    newsParams.q = location;
+
+    var queryURL = newsURL + $.param(newsParams);
+
+    getData(queryURL);
+    /////// END NEWS API ///////
+      
 
     });
+
+
 
 });
