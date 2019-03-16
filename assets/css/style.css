@@ -1,3 +1,8 @@
+/***   MAIN   ***/
+html, body {
+  height: 100%;
+  margin: 0;
+}
 #backgroundimg { 
     background: url(../images/worldmap.jpg) no-repeat center center fixed; 
     -webkit-background-size: cover;
@@ -5,3 +10,28 @@
     -o-background-size: cover;
     background-size: cover;
   }
+.wrapper {
+    min-height: 100%;
+    margin-bottom: -50px;
+}
+.footer,
+.push {
+  color: white;
+  height: 50px;
+}
+#footerInfo {
+  color: black
+}
+
+
+/*** BODY ***/
+.travelApp {
+  color: white;
+  margin-top: 350px;
+}
+.enterCity {
+  border-radius: 4px;
+}
+.searchButton {
+  margin-top: 10px;
+}
