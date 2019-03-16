@@ -9,27 +9,40 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
+  <!-- CSS STYLESHEET -->
   <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 
   <title>Travel App</title>
 </head>
 
 <body id="backgroundimg">
+
+<div class="wrapper">
+
   <div class="container text-center">
     <div class="row">
-      <div class="col">
+      <div class="col travelApp">
         <h1>Travel App</h1>
-        <input type="search" class="search-box" id="search-city" placeholder="Enter city"/>
-        <span class="search-button">
-          <span class="search-icon"></span>
-        </span>
+          <input type="search" class="search-box enterCity" id="search-city" placeholder="Enter city"/>
+          <div class="w-100"></div>
+          <button type="button" class="btn btn-light searchButton">Search</button>
       </div>
     </div>
   </div>
 
+<div class="push"></div>
+</div>
 
+<footer class="footer text-center">
+        
+    Copyright&copy;
+    <p class="footerDev"></p>
 
-  <!-- Optional JavaScript -->
+</footer>
+
+  <!-- JavaScript -->
+  <script src="assets/javascript/app.js"></script>
+
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
     integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
