@@ -1,6 +1,6 @@
+$(document).ready(function(){
+// MeetUp API
+ var meetUpURL = "";
+ var location = $('#search-city').val();
 
-
- // NY TIMES queryURL for API
- var queryURL = "https://api.nytimes.com/svc/search/v2/articlesearch.json?";
-
- 
+});
