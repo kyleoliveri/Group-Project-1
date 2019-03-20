@@ -4,14 +4,35 @@ $(document).ready(function () {
     var newsURL = "https://api.nytimes.com/svc/search/v2/articlesearch.json?";
 
     var weatherFn = function (data) {
-        console.log(data);
+        console.log("Weather: ", data);
     };
     var ticketFn = function (data) {
-        console.log(data);
+        console.log("Ticketmaster: ", data);
     };
     var newsFn = function (data) {
-        console.log(data);
-    };
+        console.log("News: ", data);
+
+            var outerUl = $("<ul>");
+
+                var articles = data.response.docs;
+
+                    for (var i = 0; i < articles.length; i++) {
+                        var mainLi = $("<li>"); 
+                        mainLi.text(articles[i].headline.main);
+                        
+                            var innerOl = $("<ol>");
+                            var subLi = $("<li>");
+                            subLi.text(articles[i].snippet);
+                            subLi.append("<a href='" + articles[i].web_url + "'>" + articles[i].web_url + "</a>");
+                        
+                        innerOl.append(subLi);
+
+                        outerUl.append(mainLi);
+                    }
+
+            $("#news").append(outerUl);
+        
+     };
     var yelpFn = function (data) {
         console.log(data);
     };
@@ -50,5 +71,6 @@ $(document).ready(function () {
 
     });
 
+    
 
 });

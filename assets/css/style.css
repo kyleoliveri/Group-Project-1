@@ -35,3 +35,6 @@ html, body {
 .searchButton {
   margin-top: 10px;
 }
+.news-list {
+  background: black;
+}
