@@ -1,5 +1,10 @@
 $(document).ready(function () {
 
+    // Stylized search button
+    $('.search-button').click(function(){
+        $(this).parent().toggleClass('open');
+    });
+
     // NY TIMES queryURL for API
     var newsURL = "https://api.nytimes.com/svc/search/v2/articlesearch.json?";
 
