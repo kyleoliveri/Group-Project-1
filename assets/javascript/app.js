@@ -34,9 +34,25 @@ $(document).ready(function () {
         $('#weather').append(ul);
         console.log(weather);
     };
+  
     var ticketFn = function (data) {
-        //console.log(data);
+        console.log(data._embedded);
+        var ul = $('<ul>');
+        var events = data._embedded.events;
+        
+        for (var i = 0; i < 10; i++){
+            var li = $('<li>');
+            li.text(events[i].name);
+            ul.append(li);
+        }
+        $('#event').append(ul);
+        console.log(events);
+
+        // for(var i =0; i < cities.length; i++) {
+        // console.log(cities[i]);   
+        // }
     };
+
     var newsFn = function (data) {
         //console.log(data);
     };
