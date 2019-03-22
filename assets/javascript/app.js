@@ -12,6 +12,7 @@ $(document).ready(function () {
     firebase.initializeApp(config);
       
     var database = firebase.database();
+    var searchInput = false;
 
     // Stylized search button
     $('.search-button').click(function(){
@@ -22,18 +23,17 @@ $(document).ready(function () {
     var newsURL = "https://api.nytimes.com/svc/search/v2/articlesearch.json?";
 
     var weatherFn = function (data) {
-        console.log("Weather: ", data);
-        console.log("hello");
-        var ul = $('<ul>');
-        var weather = data.list;
-        for (var i = 0; i < 10; i++){
-            var li = $('<li>');
-            li.text(weather[i].main.temp);
-            // Must turn into F
-            ul.append(li);
-        }
-        $('#weather').append(ul);
-        console.log(weather);
+        var displayWeather = $('<h3>');
+        var weather = Math.round(data.list[0].main.temp);
+        var location = data.city.name;
+        var p = $('<p>');
+        var p2 = $('<p>');
+        p.text(weather  + '\xB0F');
+        p2.text('Current Temp in ' + location);
+        displayWeather.append(p2);
+        displayWeather.append(p);
+        $('#weather').append(displayWeather);
+        console.log(data);
     };
   
     var ticketFn = function (data) {
@@ -84,14 +84,25 @@ $(document).ready(function () {
             callback(response);
         });
     };
+    
+    // $("#searchButton").on("click", function() {
+    //     // Loads information.html
+    //     if($('.search-box').val()) {
+    //         window.location.href = "information.html";
+    //     }
+    // });
 
-    $("#search-btn").on("click", function (event) {
+    $("#search-btn").on("click", function(event) {
         event.preventDefault();
-
-        var location = $('#search-city').val().trim();
+        // Loads information.html
+        if($('#search-city').val()) {
+            window.location.href = "information.html";
+        }
+        
+        var location = $('#search-city').val();
 
         var ticketURL = "https://app.ticketmaster.com/discovery/v2/events.json?city=" + location + "&apikey=GUGxZfyhbML7wYGWnG6WJgswr520dPab";
-        var weatherURL = "https://api.openweathermap.org/data/2.5/forecast?id=524901&APPID=ee154728981041b7ff67246fa7ea0282&q=" + location;
+        var weatherURL = "https://api.openweathermap.org/data/2.5/forecast?id=524901&APPID=ee154728981041b7ff67246fa7ea0282&q=" + location + "&units=imperial";
 
         getData(ticketURL, ticketFn);
         getData(weatherURL, weatherFn);
@@ -111,7 +122,7 @@ $(document).ready(function () {
 
         ///////// Firebase ///////// 
         event.preventDefault();
-        var cityName = $("#search-city").val().trim();
+        var cityName = $("#search-city").val();
     
         // Creates local "temporary" object
         var newCity = {
@@ -124,6 +135,8 @@ $(document).ready(function () {
         // Clears all of the text-boxes
         $("#search-city").val("");
 
+        
+
     });
   
     // Add to Firebase
@@ -135,4 +148,3 @@ $(document).ready(function () {
 
 });
 
-});
