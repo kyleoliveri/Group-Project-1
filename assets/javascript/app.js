@@ -12,29 +12,24 @@ $(document).ready(function () {
     var newsFn = function (data) {
         console.log("News: ", data);
 
-            var outerUl = $("<ul>");
+        var outerUl = $("<ul>");
+        var articles = data.response.docs;
 
-                var articles = data.response.docs;
+        for (var i = 0; i < articles.length; i++) {
+            var mainLi = $("<li>");
+            mainLi.text(articles[i].headline.main);
 
-                    for (var i = 0; i < articles.length; i++) {
-                        var mainLi = $("<li>"); 
-                        mainLi.text(articles[i].headline.main);
-                        
-                            var innerOl = $("<ol>");
-                            var subLi = $("<li>");
-                            subLi.text(articles[i].snippet);
-                            subLi.append("<a href='" + articles[i].web_url + "'>" + articles[i].web_url + "</a>");
-                        
-                        innerOl.append(subLi);
+            var innerOl = $("<ul>");
+            var subLi = $("<li>");
+            subLi.text(articles[i].snippet);
+            subLi.append("<a href='" + articles[i].web_url + "'>" + articles[i].web_url + "</a>");
 
-                        outerUl.append(mainLi);
-                    }
+            innerOl.append(subLi);
+            outerUl.append(innerOl);
+        }
 
-            $("#news").append(outerUl);
-        
-     };
-    var yelpFn = function (data) {
-        console.log(data);
+        $("#news").append(outerUl);
+
     };
 
     var getData = function (url, callback) {
@@ -71,6 +66,6 @@ $(document).ready(function () {
 
     });
 
-    
+
 
 });
