@@ -9,6 +9,9 @@
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <!-- CSS STYLESHEET -->
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/5.9.0/firebase.js"></script>
+
     <!-- PAGE TITLE -->
     <title>Travel App</title>
 </head>
@@ -20,8 +23,10 @@
         <nav class="navbar navbar-light bg-light">
             <a class="navbar-brand" id="cityNameNav">Use JS or jQuery to populate city name here!</a>
                 <form class="form-inline">
-                  <input class="form-control mr-sm-2" id="search-city" type="search" placeholder="Search city..." aria-label="Search">
+
+                  <input id="search-city" class="form-control mr-sm-2" type="search" placeholder="Search city..." aria-label="Search">
                   <button id="search-btn" class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                  
                 </form>
         </nav>
 
@@ -53,7 +58,7 @@
 
 <footer class="footer text-center" id="footerInfo">
         
-    Copyright&copy;
+    Copyright &copy; 2019 Group 4
     <p class="footerDev"></p>
 
 </footer>
@@ -66,6 +71,7 @@ crossorigin="anonymous"></script>
 
     <!-- JavaScript -->
     <script src="assets/javascript/app.js"></script>
+    
 
 </body>
 
