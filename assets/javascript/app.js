@@ -1,4 +1,5 @@
 $(document).ready(function () {
+    
     // Firebase
     var config = {
         apiKey: "AIzaSyDhX3eoKqB9FaOcBx9UuhH_gdQ8Eh2D6Ho",
@@ -7,10 +8,10 @@ $(document).ready(function () {
         projectId: "tavel-app",
         storageBucket: "tavel-app.appspot.com",
         messagingSenderId: "1098746254883"
-      };
+    };
 
     firebase.initializeApp(config);
-      
+
     var database = firebase.database();
 
     $("#weather").hide();
@@ -19,14 +20,16 @@ $(document).ready(function () {
     $("#navbar").hide();
 
     // Stylized search button
-    $('.search-button').click(function(){
+    $('.search-button').click(function () {
         $(this).parent().toggleClass('open');
     });
 
     // NY TIMES queryURL for API
     var newsURL = "https://api.nytimes.com/svc/search/v2/articlesearch.json?";
 
+    //WEATHER FUNCTION
     var weatherFn = function (data) {
+
         var displayWeather = $('<h3>');
         var weather = Math.round(data.list[0].main.temp);
         var location = data.city.name;
@@ -38,16 +41,18 @@ $(document).ready(function () {
         displayWeather.append(p);
         $('#weather').append(displayWeather);
         console.log(data);
+
     };
-  
+
+    //TICKETMASTER FUNCTION
     var ticketFn = function (data) {
 
         console.log("Ticketmaster: ", data);
         console.log(data._embedded);
         var ul = $('<ul>');
         var events = data._embedded.events;
-        
-        for (var i = 0; i < 10; i++){
+
+        for (var i = 0; i < 10; i++) {
             var li = $('<li>');
             li.text(events[i].name);
             ul.append(li);
@@ -57,26 +62,32 @@ $(document).ready(function () {
 
     };
 
+    //NEWS FUNCTION
     var newsFn = function (data) {
         console.log("News: ", data);
-
-        var outerUl = $("<ul>");
         var articles = data.response.docs;
+        var articleList = $("<ul>");
+        for (var i = 0; i < 10; i++) {
 
-        for (var i = 0; i < articles.length; i++) {
-            var mainLi = $("<li>");
-            mainLi.text(articles[i].headline.main);
+            articleList.addClass("list-group");
 
-            var innerOl = $("<ul>");
-            var subLi = $("<li>");
-            subLi.text(articles[i].snippet);
-            subLi.append("<a href='" + articles[i].web_url + "'>" + articles[i].web_url + "</a>");
+            var articleListItem = $("<span class='articleHeadline text-left'>");
 
-            innerOl.append(subLi);
-            outerUl.append(innerOl);
+            articleListItem.append("<strong>" + articles[i].headline.main + "</strong>");
+
+            var li = $("<span> <br>");
+            li.append(articles[i].snippet);
+            articleListItem.append(li);
+
+            var url = $("<span>");
+            url.append("<br> <a href='" + articles[i].web_url + "'>" + articles[i].web_url + "</a>");
+            articleListItem.append(url);
+
+            articleList.append(articleListItem);
+
         }
 
-        $("#news").append(outerUl);
+        $("#news").append(articleList);
 
     };
 
@@ -89,7 +100,10 @@ $(document).ready(function () {
         });
     };
 
+
+    //ON CLICK FUNCTION
     $("#search-btn").on("click", function(event) {
+
         event.preventDefault();
         if($('#search-city').val()) {
         var location = $('#search-city').val().trim();
@@ -123,26 +137,27 @@ $(document).ready(function () {
 
         ///////// Firebase ///////// 
         event.preventDefault();
-        var cityName = $("#search-city").val();
+
+        var cityName = $("#search-city").val().trim();
     
         // Creates local "temporary" object
         var newCity = {
-        city: cityName,
+            city: cityName,
         };
-    
+
         // Uploads data to the database
         database.ref().push(newCity);
-    
+
         // Clears all of the text-boxes
         $("#search-city").val("");
 
     });
 
     // Add to Firebase
-    database.ref().on("child_added", function(snapshot) {
+    database.ref().on("child_added", function (snapshot) {
         // Store everything into a variable.
         var searchCity = snapshot.val().city;
-    
+
     });
 
 });

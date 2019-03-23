@@ -3,6 +3,13 @@ html, body {
   height: 100%;
   margin: 0;
 }
+.background{
+  background: url(../images/antique.jpg) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
 #backgroundimg { 
     background: url(../images/worldmap.jpg) no-repeat center center fixed; 
     -webkit-background-size: cover;
@@ -143,4 +150,23 @@ html, body {
   right: 22px;
   top: 13px;
   height: 18px;
+}
+
+
+/* INFORMATION */
+.articleHeadline {
+  padding: 15px;
+}
+.divBackgrounds {
+  background: #a5883025;
+  border-radius: 4px;
+  color: white;
+}
+.infoSearch {
+  border-color: #b38600;
+  color: #b38600;
+}
+.infoSearch:hover {
+  background: #b38600;
+  color: white;
 }
