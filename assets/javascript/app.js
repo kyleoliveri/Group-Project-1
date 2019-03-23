@@ -1,5 +1,7 @@
 $(document).ready(function () {
 
+    console.log("If you come this far... It's too late");
+
     // Firebase
     var config = {
         apiKey: "AIzaSyDhX3eoKqB9FaOcBx9UuhH_gdQ8Eh2D6Ho",
@@ -54,7 +56,7 @@ $(document).ready(function () {
         for (var i = 0; i < 10; i++) {
             eventsList.addClass("list-group");
 
-            var eventsListItem = $("<span class='eventsName text-left'>");
+            var eventsListItem = $("<span class='eventsName text-left border'>");
             eventsListItem.append("<strong>" + events[i].name + "</strong>");
 
             var li = $("<span>");
