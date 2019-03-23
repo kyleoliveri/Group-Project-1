@@ -54,7 +54,7 @@ $(document).ready(function () {
         for (var i = 0; i < 10; i++) {
             eventsList.addClass("list-group");
 
-            var eventsListItem = $("<span class='eventsName text-left'>");
+            var eventsListItem = $("<span class='eventsName text-left border'>");
             eventsListItem.append("<strong>" + events[i].name + "</strong>");
 
             var li = $("<span>");
