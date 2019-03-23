@@ -12,7 +12,11 @@ $(document).ready(function () {
     firebase.initializeApp(config);
       
     var database = firebase.database();
-    var searchInput = false;
+
+    $("#weather").hide();
+    $("#news").hide();
+    $("#event").hide();
+    $("#navbar").hide();
 
     // Stylized search button
     $('.search-button').click(function(){
@@ -84,22 +88,13 @@ $(document).ready(function () {
             callback(response);
         });
     };
-    
-    // $("#searchButton").on("click", function() {
-    //     // Loads information.html
-    //     if($('.search-box').val()) {
-    //         window.location.href = "information.html";
-    //     }
-    // });
 
     $("#search-btn").on("click", function(event) {
         event.preventDefault();
-        // Loads information.html
         if($('#search-city').val()) {
-            window.location.href = "information.html";
-        }
-        
-        var location = $('#search-city').val();
+        var location = $('#search-city').val().trim();
+
+        $('#firstSearch').hide();
 
         var ticketURL = "https://app.ticketmaster.com/discovery/v2/events.json?city=" + location + "&apikey=GUGxZfyhbML7wYGWnG6WJgswr520dPab";
         var weatherURL = "https://api.openweathermap.org/data/2.5/forecast?id=524901&APPID=ee154728981041b7ff67246fa7ea0282&q=" + location + "&units=imperial";
@@ -119,6 +114,12 @@ $(document).ready(function () {
 
         getData(queryURL, newsFn);
         /////// END NEWS API ///////
+        
+        $("#weather").show();
+        $("#news").show();
+        $("#event").show();
+        $("#navbar").show();
+        }
 
         ///////// Firebase ///////// 
         event.preventDefault();
@@ -135,10 +136,8 @@ $(document).ready(function () {
         // Clears all of the text-boxes
         $("#search-city").val("");
 
-        
-
     });
-  
+
     // Add to Firebase
     database.ref().on("child_added", function(snapshot) {
         // Store everything into a variable.
