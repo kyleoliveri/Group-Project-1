@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    
+
     // Firebase
     var config = {
         apiKey: "AIzaSyDhX3eoKqB9FaOcBx9UuhH_gdQ8Eh2D6Ho",
@@ -35,7 +35,7 @@ $(document).ready(function () {
         var location = data.city.name;
         var p = $('<p>');
         var p2 = $('<p>');
-        p.text(weather  + '\xB0F');
+        p.text(weather + '\xB0F');
         p2.text('Current Temp in ' + location);
         displayWeather.append(p2);
         displayWeather.append(p);
@@ -46,21 +46,29 @@ $(document).ready(function () {
 
     //TICKETMASTER FUNCTION
     var ticketFn = function (data) {
-
         console.log("Ticketmaster: ", data);
-        console.log(data._embedded);
-        var ul = $('<ul>');
         var events = data._embedded.events;
+        var eventsList = $('<ul>');
 
         for (var i = 0; i < 10; i++) {
-            var li = $('<li>');
-            li.text(events[i].name);
-            ul.append(li);
-        }
-        $('#event').append(ul);
-        console.log(events);
+            eventsList.addClass("list-group");
 
+            var eventsListItem = $("<span class='eventsName text-left'>");
+            eventsListItem.append("<strong>" + events[i].name + "</strong>");
+
+            var li = $("<span>");
+            eventsListItem.append(li);
+
+            var url = $("<span>");
+            url.append("<br> <a href='" + events[i].url + "'>" + events[i].url + "</a>");
+
+            eventsListItem.append(url);
+            eventsList.append(eventsListItem);     
+        };
+
+        $('#event').append(eventsList);
     };
+
 
     //NEWS FUNCTION
     var newsFn = function (data) {
@@ -102,44 +110,44 @@ $(document).ready(function () {
 
 
     //ON CLICK FUNCTION
-    $("#search-btn").on("click", function(event) {
+    $("#search-btn").on("click", function (event) {
 
         event.preventDefault();
-        if($('#search-city').val()) {
-        var location = $('#search-city').val().trim();
+        if ($('#search-city').val()) {
+            var location = $('#search-city').val().trim();
 
-        $('#firstSearch').hide();
+            $('#firstSearch').hide();
 
-        var ticketURL = "https://app.ticketmaster.com/discovery/v2/events.json?city=" + location + "&apikey=GUGxZfyhbML7wYGWnG6WJgswr520dPab";
-        var weatherURL = "https://api.openweathermap.org/data/2.5/forecast?id=524901&APPID=ee154728981041b7ff67246fa7ea0282&q=" + location + "&units=imperial";
+            var ticketURL = "https://app.ticketmaster.com/discovery/v2/events.json?city=" + location + "&apikey=GUGxZfyhbML7wYGWnG6WJgswr520dPab";
+            var weatherURL = "https://api.openweathermap.org/data/2.5/forecast?id=524901&APPID=ee154728981041b7ff67246fa7ea0282&q=" + location + "&units=imperial";
 
-        getData(ticketURL, ticketFn);
-        getData(weatherURL, weatherFn);
+            getData(ticketURL, ticketFn);
+            getData(weatherURL, weatherFn);
 
-        ////// NEWS API ///////
-        var newsParams = {
-            "api-key":
-                "R1a31F4tBjCUaM2ho8GtIFsrSdtXt30M"
-        };
+            ////// NEWS API ///////
+            var newsParams = {
+                "api-key":
+                    "R1a31F4tBjCUaM2ho8GtIFsrSdtXt30M"
+            };
 
-        newsParams.q = location;
+            newsParams.q = location;
 
-        var queryURL = newsURL + $.param(newsParams);
+            var queryURL = newsURL + $.param(newsParams);
 
-        getData(queryURL, newsFn);
-        /////// END NEWS API ///////
-        
-        $("#weather").show();
-        $("#news").show();
-        $("#event").show();
-        $("#navbar").show();
+            getData(queryURL, newsFn);
+            /////// END NEWS API ///////
+
+            $("#weather").show();
+            $("#news").show();
+            $("#event").show();
+            $("#navbar").show();
         }
 
         ///////// Firebase ///////// 
         event.preventDefault();
 
         var cityName = $("#search-city").val().trim();
-    
+
         // Creates local "temporary" object
         var newCity = {
             city: cityName,

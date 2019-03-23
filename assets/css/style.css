@@ -154,7 +154,7 @@ html, body {
 
 
 /* INFORMATION */
-.articleHeadline {
+.articleHeadline, .eventsName {
   padding: 15px;
 }
 .divBackgrounds {
