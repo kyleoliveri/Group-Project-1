@@ -14,6 +14,11 @@ $(document).ready(function () {
 
     var database = firebase.database();
 
+    $("#weather").hide();
+    $("#news").hide();
+    $("#event").hide();
+    $("#navbar").hide();
+
     // Stylized search button
     $('.search-button').click(function () {
         $(this).parent().toggleClass('open');
@@ -24,18 +29,19 @@ $(document).ready(function () {
 
     //WEATHER FUNCTION
     var weatherFn = function (data) {
-        console.log("Weather: ", data);
-        console.log("hello");
-        var ul = $('<ul>');
-        var weather = data.list;
-        for (var i = 0; i < 10; i++) {
-            var li = $('<li>');
-            li.text(weather[i].main.temp);
-            // Must turn into F
-            ul.append(li);
-        }
-        $('#weather').append(ul);
-        console.log(weather);
+
+        var displayWeather = $('<h3>');
+        var weather = Math.round(data.list[0].main.temp);
+        var location = data.city.name;
+        var p = $('<p>');
+        var p2 = $('<p>');
+        p.text(weather  + '\xB0F');
+        p2.text('Current Temp in ' + location);
+        displayWeather.append(p2);
+        displayWeather.append(p);
+        $('#weather').append(displayWeather);
+        console.log(data);
+
     };
 
     //TICKETMASTER FUNCTION
@@ -94,14 +100,18 @@ $(document).ready(function () {
         });
     };
 
-    //ON CLICK FUNCTION
-    $("#search-btn").on("click", function (event) {
-        event.preventDefault();
 
+    //ON CLICK FUNCTION
+    $("#search-btn").on("click", function(event) {
+
+        event.preventDefault();
+        if($('#search-city').val()) {
         var location = $('#search-city').val().trim();
 
+        $('#firstSearch').hide();
+
         var ticketURL = "https://app.ticketmaster.com/discovery/v2/events.json?city=" + location + "&apikey=GUGxZfyhbML7wYGWnG6WJgswr520dPab";
-        var weatherURL = "https://api.openweathermap.org/data/2.5/forecast?id=524901&APPID=ee154728981041b7ff67246fa7ea0282&q=" + location;
+        var weatherURL = "https://api.openweathermap.org/data/2.5/forecast?id=524901&APPID=ee154728981041b7ff67246fa7ea0282&q=" + location + "&units=imperial";
 
         getData(ticketURL, ticketFn);
         getData(weatherURL, weatherFn);
@@ -118,11 +128,18 @@ $(document).ready(function () {
 
         getData(queryURL, newsFn);
         /////// END NEWS API ///////
+        
+        $("#weather").show();
+        $("#news").show();
+        $("#event").show();
+        $("#navbar").show();
+        }
 
         ///////// Firebase ///////// 
         event.preventDefault();
-        var cityName = $("#search-city").val().trim();
 
+        var cityName = $("#search-city").val().trim();
+    
         // Creates local "temporary" object
         var newCity = {
             city: cityName,
@@ -144,3 +161,4 @@ $(document).ready(function () {
     });
 
 });
+
