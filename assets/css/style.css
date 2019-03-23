@@ -1,5 +1,7 @@
 /***   MAIN   ***/
 html, body {
+  color: whitesmoke;
+  font-family: 'Catamaran', sans-serif;
   height: 100%;
   margin: 0;
 }
@@ -24,21 +26,24 @@ html, body {
 .footer,
 .push {
   color: #f8c787;
-  height: 50px;
-  font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+  height: 75px;
+  font-family: 'Catamaran', sans-serif;
+}
+.footer {
+  padding: 15px;
 }
 #footerInfo {
   color: black
 }
 
 .travelApp {
-  font-family: 'Courier New', Courier, monospace;
+  font-family: 'Catamaran', sans-serif;
   margin-top: 300px;
 }
 
 #appname {
-  color: hsl(34, 95%, 50%);
-  font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+  color: #b38600;
+  font-family: 'Catamaran', sans-serif;
   text-shadow: 3px 3px #61381d;
   font-size: 80px;
   background-color: rgba(0,0,0,0.7);
@@ -159,14 +164,27 @@ html, body {
 }
 .divBackgrounds {
   background: #a5883025;
-  border-radius: 4px;
+  border-radius: 10px;
   color: white;
 }
-.infoSearch {
+.home-btn {
   border-color: #b38600;
   color: #b38600;
 }
-.infoSearch:hover {
+.home-btn:hover {
   background: #b38600;
   color: white;
+}
+.infoDiv {
+  background: #140d08be;
+  border-radius: 5px;
+  padding: 10px;
+}
+h2 {
+  color: white;
+  font-family: 'Nanum Gothic', sans-serif;
+}
+.navBackground {
+  background: #352d149f;
+  margin-bottom: 25px;
 }
