@@ -1,5 +1,7 @@
 $(document).ready(function () {
 
+    console.log("If you come this far... It's too late");
+
     // Firebase
     var config = {
         apiKey: "AIzaSyDhX3eoKqB9FaOcBx9UuhH_gdQ8Eh2D6Ho",
