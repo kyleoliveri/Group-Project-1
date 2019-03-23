@@ -40,6 +40,7 @@ $(document).ready(function () {
         displayWeather.append(p2);
         displayWeather.append(p);
         $('#weather').append(displayWeather);
+        $("#cityNameNav").append("<h3>" + data.city.name + ", " + data.city.country + "</h3>");
         console.log(data);
 
     };
@@ -71,9 +72,9 @@ $(document).ready(function () {
 
             articleList.addClass("list-group");
 
-            var articleListItem = $("<span class='articleHeadline text-left'>");
+            var articleListItem = $("<span class='articleHeadline text-left border'>");
 
-            articleListItem.append("<strong>" + articles[i].headline.main + "</strong>");
+            articleListItem.append("<h5>" + articles[i].headline.main + "</h5>");
 
             var li = $("<span> <br>");
             li.append(articles[i].snippet);

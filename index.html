@@ -5,6 +5,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+  <!-- GOOGLE FONT -->
+  <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet">
+
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -15,82 +18,83 @@
   <!-- Firebase -->
   <script src="https://www.gstatic.com/firebasejs/5.9.0/firebase.js"></script>
 
-  <title>Travel App</title>
+  <title>Nomad | Group 4</title>
 </head>
 
 <body id="backgroundimg">
 
-<div class="wrapper">
+  <div class="wrapper">
 
-  <div id="firstSearch" class="container text-center">
-    <div class="row">
-      <div class="col travelApp">
-        <p id="appname">Nomad</p>
-        <div class="search">
-          <input type="search" class="search-box" id='search-city'/>
-          <span class="search-button" id="search-btn">
-            <span class="search-icon"></span>
-          </span>
+    <div id="firstSearch" class="container text-center">
+      <div class="row">
+        <div class="col travelApp">
+          <p id="appname">Nomad</p>
+          <div class="search">
+            <input type="search" class="search-box" id='search-city' />
+            <span class="search-button" id="search-btn">
+              <span class="search-icon"></span>
+            </span>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <nav id="navbar" class="navbar navbar-light bg-light">
-      <a class="navbar-brand" id="cityNameNav">Use JS or jQuery to populate city name here!</a>
-          <form class="form-inline">
+    <nav id="navbar" class="navbar navbar-light navBackground">
+      <a class="navbar-brand">
+        <div id="cityNameNav">
+        </div>
+      </a>
+      <form class="form-inline">
 
-            <a href="information.html">
-            <button id="search-btn" class="btn btn-outline-success my-2 my-sm-0" type="submit">Home</button>
-          </a>
-            
-          </form>
-  </nav>
+        <a href="information.html">
+          <button id="search-btn" class="btn my-2 my-sm-0 home-btn" type="submit">Home</button>
+        </a>
 
-  <div class="container text-center">
+      </form>
+    </nav>
+
+    <div class="container text-center">
 
       <!-- WEATHER SECTION -->
       <div class="row">
-          <div class="col border" id="weather">
-              <h2>Weather</h2>
-          </div>
+        <div class="col border infoDiv" id="weather">
+          <h2>Weather</h2>
+        </div>
       </div>
       <div class="row">
-          <!-- NEWS SECTION -->
-          <div class="col-6 border" id="news">
-              <h2>News</h2>
-          </div>
+        <!-- NEWS SECTION -->
+        <div class="col-6 border infoDiv" id="news">
+          <h2>News</h2>
+        </div>
 
-          <!-- EVENT SECTION -->
-          <div class="col-6 border" id="event">
-              <h2>Event</h2>
-          </div>
+        <!-- EVENT SECTION -->
+        <div class="col-6 border infoDiv" id="event">
+          <h2>Event</h2>
+        </div>
 
       </div>
+    </div>
+
+
+
+
+    <div class="push"></div>
   </div>
 
+  <footer class="footer text-center">
 
+    Copyright &copy; 2019
+    <p class="footerDev">Developed by Group 4</p>
 
-
-<div class="push"></div>
-</div>
-
-<footer class="footer text-center">
-        
-    Copyright &copy; 2019 Group 4
-    <p class="footerDev"></p>
-
-</footer>
+  </footer>
 
 
   <!-- JavaScript -->
-  <script
-  src="http://code.jquery.com/jquery-3.3.1.min.js"
-  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-  crossorigin="anonymous"></script>
+  <script src="http://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 
   <script src="assets/javascript/app.js"></script>
-  
+
 
 </body>
 
